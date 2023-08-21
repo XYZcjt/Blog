@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>XYZ's Blog</title><meta name="author" content="cjt"><meta name="copyright" content="cjt"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="XYZ&#39;s Blog">
+<meta property="og:url" content="https://xyzcjt.github.io/Blog/index.html">
+<meta property="og:site_name" content="XYZ&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg">
+<meta property="article:author" content="cjt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg"><link rel="shortcut icon" href="/Blog/img/headImage.jpg"><link rel="canonical" href="https://xyzcjt.github.io/Blog/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/Blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/Blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'XYZ\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-08-21 15:19:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/Blog/img/headImage.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/Blog/img/homePage.png')"><nav id="nav"><span id="blog-info"><a href="/Blog/" title="XYZ's Blog"><span class="site-name">XYZ's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">XYZ's Blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/18/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%B8%89/" title="C++11新特性(三)">C++11新特性(三)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-18T13:52:13.000Z" title="发表于 2023-08-18 21:52:13">2023-08-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">安全性共享智能指针在C++中没有垃圾回收机制，必须自己释放分配的内存，否则就会造成内存泄露。解决这个问题最有效的方法是使用智能指针（smart pointer）。
+共享智能指针是 C++ 中用于管理动态分配资源的智能指针类型之一。它们允许多个智能指针共享同一个动态分配的对象，以便在对象不再需要时自动释放资源。C++ 标准库提供了 std::shared_ptr 类来实现共享智能指针的功能。
+共享智能指针的主要特点是引用计数。每个 std::shared_ptr 实例都会维护一个引用计数，表示有多少个智能指针共享同一个对象。当引用计数减少到零时，表示没有智能指针引用该对象，此时对象会自动释放资源。
+C++11中使用共享智能指针时需要引用头文件&lt;memory&gt;
+shared_ptr的初始化shared_ptr初始化有三种方式：通过构造函数、**std::make_shared辅助函数以及reset方法**。共享智能指针对象初始化完毕之后就指向了要管理的那块堆内存，如果想要查看当前有多少个智能指针同时管理着这块内存可以使用共享智能指针提供的一个成员函数use_count，函数原型 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/16/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++强制类型转换">C++强制类型转换</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-16T12:06:31.000Z" title="发表于 2023-08-16 20:06:31">2023-08-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">static_caststatic_cast 是C++中的一个类型转换操作符，用于在编译时执行常规的类型转换。它通常用于进行较为安全的类型转换，例如在较窄的类型与较宽的类型之间进行转换，或者将基类指针或引用转换为派生类指针或引用（如果是安全的）。
+语法：
+1static_cast&lt;new_type&gt;(expression)
+
+其中，new_type 是需要转换成的目标类型，expression 是需要进行类型转换的表达式。
+示例：
+1234567891011121314#include &lt;iostream&gt;int main() &#123;    int intValue = 42;    double doubleValue = static_cast&lt;double&gt;(intValue);  // Converting int to double        std::cout &lt;&lt; &quot;Double value: &quot; &lt;&lt; doubleValue &lt;&lt; std::endl;        c ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%BA%8C/" title="C++11新特性(二)">C++11新特性(二)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-04T05:46:49.000Z" title="发表于 2023-08-04 13:46:49">2023-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">通用性能的提升常量表达式修饰符(constexpr)constexpr的概念和基本使用在C++11中添加了一个新的关键字constexpr，这个关键字是用来修饰常量表达式的。常量表达式指的就是由多个（≥1）常量（值不会改变）组成并且在编译过程中就得到计算结果的表达式。
+在gcc/g++的工作流程中，C++ 程序从编写完毕到执行分为四个阶段：预处理、 编译、汇编和链接4个阶段，得到可执行程序之后就可以运行了。
+需要注意的是，常量表达式和非常量表达式的计算时机不同，非常量表达式只能在程序运行阶段计算出结果，但是常量表达式的计算往往发生在程序的编译阶段，这可以极大提高程序的执行效率，因为表达式只需要在编译阶段计算一次，节省了每次程序运行时都需要计算一次的时间。
+在C++11中添加了constexpr关键字之后就可以在程序中使用它来修饰常量表达式，用来提高程序的执行效率。在使用中需要将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。
+在定义常量时，const 和 constexpr 是等价的， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/02/C-11%E6%96%B0%E7%89%B9%E6%80%A7(%E4%B8%80)/" title="C++11新特性(一)">C++11新特性(一)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-02T06:37:35.000Z" title="发表于 2023-08-02 14:37:35">2023-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">稳定性和兼容性原始字面量C++11 引入了原始字面量（Raw Literals）特性，它允许开发者使用更直观的方式编写字符串和字符字面量，包括原始字符串字面量和原始字符字面量。使用原始字面量可以减少转义字符的使用，使得字符串的书写更加清晰。
+
+原始字符串字面量：
+
+原始字符串字面量使用 R”xxx()xxx” 的形式，xxx相当于是一个备注，前后两个xxx必须相等，不会输出到屏幕上，其中括号内可以添加一个前缀，来指定原始字符串的格式。
+12345678#include &lt;iostream&gt;int main() &#123;    std::string rawString = R&quot;(This is a raw string literal.\n It can contain newlines and escape characters like \t and \&quot;).)&quot;;    std::cout &lt;&lt; rawString &lt;&lt; std::endl;        return 0;&#125;
+
+输出结果：
+1Thi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/02/C-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" title="C++常用算法">C++常用算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-02T05:35:23.000Z" title="发表于 2023-08-02 13:35:23">2023-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">遍历算法for_eachstd::for_each用于对一个容器（比如 vector、list、array 等）中的元素进行遍历，并对每个元素执行指定的操作（函数）。它的函数签名如下：
+12template&lt; class InputIt, class UnaryFunction &gt;UnaryFunction for_each( InputIt first, InputIt last, UnaryFunction f );
+
+参数解释：
+
+first: 要遍历的容器的起始迭代器。
+last: 要遍历的容器的结束迭代器（不包含在遍历范围内）。
+f: 一个一元函数对象（或函数指针），用于对每个元素执行操作。
+
+std::for_each 不会修改容器中的元素，它只是用来遍历并对每个元素执行操作。
+下面是一个简单的例子来说明 std::for_each 的用法：
+12345678910111213141516171819#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;// 一个函数， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/01/gcc%E7%BC%96%E8%AF%91%E5%99%A8/" title="gcc编译器">gcc编译器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T15:48:35.000Z" title="发表于 2023-08-01 23:48:35">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/Linux/">Linux</a></span></div><div class="content">gcc安装12345678# 安装软件必须要有管理员权限# ubuntu$ sudo apt update   		# 更新本地的软件下载列表, 得到最新的下载地址$ sudo apt install gcc g++	# 通过下载列表中提供的地址下载安装包, 并安装# centos$ sudo yum update   		# 更新本地的软件下载列表, 得到最新的下载地址$ sudo yum install gcc g++	# 通过下载列表中提供的地址下载安装包, 并安装
+
+查看版本：
+1234567# 查看 gcc 版本$ gcc -v$ gcc --version# 查看 g++ 版本$ g++ -v$ g++ --version
+
+工作流程GCC 编译器的工作流程分为 4 个阶段：预处理（预编译）、编译和优化、汇编和链接。GCC 的编译器可以将这 4 个步骤合并成一个。 先介绍一个每个步骤都分别做了写什么事儿:
+
+预处理: 在这个阶段主要做了三件事: 展开头文件 、宏替换 、去掉注释行。
+这个阶段需要GCC调用预处理器来完成, 最终得到的还是源文件, 文本格式。
+
+
+编译: 这个 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/01/vim%E7%BC%96%E8%BE%91%E5%99%A8/" title="vim编辑器">vim编辑器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T07:57:36.000Z" title="发表于 2023-08-01 15:57:36">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/Linux/">Linux</a></span></div><div class="content">vim模式在vim中一共有三种模式, 分别是 命令模式, 末行模式, 编辑模式，当我们打开vim之后默认进入的是命令模式。
+
+命令模式：在该模式下我们可以进行查看文件内容, 修改文件, 关键的搜索等操作。
+编辑模式：在该模式下主要对文件内容进行修改和内容添加。
+末行模式：在该模式下可以进行 执行Linux命令, 保存文件, 进行行的跳转, 窗口分屏等操作。
+
+这三种模式可以项目切换：
+
+命令模式 -&gt; 编辑模式 -&gt; 命令模式
+命令模式 -&gt; 末行模式 -&gt; 命令模式
+编辑模式和末行模式之间是不能相互直接切换的
+
+vim命令模式下基本操作打开文件通过vim打开一个文件, 如果文件不存在, 在退出的时候进行了保存, 文件就会被创建出来
+1$ vim fileName
+
+保存退出直接在键盘上操作, 通过键盘按两个连续的大写的Z (需要先按住 Shift 再操作)
+1ZZ
+
+代码格式化在编码过程中, 为了便于阅读和代码维护, 代码都需要按照样式对其, 如果代码格式凌乱, 可以在命令模式下快速进行代码的格式化, 让其看起来更加美观，这个操作需要在键盘上连续输入多个字符。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/01/C-%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" title="C++内建函数对象">C++内建函数对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T05:31:48.000Z" title="发表于 2023-08-01 13:31:48">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">算术仿函数在C++中，标准库提供了一组内置的算术仿函数，它们位于 &lt;functional&gt; 头文件中。这些内置算术仿函数使用模板和函数对象技术，可以用于执行基本的算术操作。以下是它们的原型：
+
+加法仿函数：std::plus
+1234template &lt;class T&gt;struct plus &#123;    T operator()(const T&amp; x, const T&amp; y) const;&#125;;
+
+减法仿函数：std::minus
+1234template &lt;class T&gt;struct minus &#123;    T operator()(const T&amp; x, const T&amp; y) const;&#125;;
+
+乘法仿函数：std::multiplies
+1234template &lt;class T&gt;struct multiplies &#123;    T operator()(const T&amp; x, const T&amp; y) const;&#125;;
+
+除法仿函数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/01/C-STL-map%E5%92%8Cmultimap/" title="C++_STL_map和multimap">C++_STL_map和multimap</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T02:31:23.000Z" title="发表于 2023-08-01 10:31:23">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">map和multimap的区别map的构造函数和赋值在C++的标准库中，std::map 是一个关联容器，用于存储一组有序的键值对（key-value pairs），其中每个键都是唯一的。std::map 提供了多种构造函数和赋值函数来创建和初始化容器。
+构造函数：
+
+默认构造函数：
+1std::map&lt;Key, T&gt; myMap;
+创建一个空的 std::map 容器。Key 是键的类型，T 是值的类型。
+
+范围构造函数：
+12template &lt;class InputIterator&gt;std::map&lt;InputIterator first, InputIterator last, const Compare&amp; comp = Compare(), const Allocator&amp; alloc = Allocator();
+创建一个 std::map 容器，并将范围 [first, last) 内的键值对拷贝到容器中。comp 是比较函数对象，用于定义键的排序规则，alloc 是分配器对象。
+
+拷贝构造函数：
+1std::map(cons ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/Blog/2023/08/01/C-STL-set%E5%92%8Cmultiset/" title="C++_STL_set和multiset">C++_STL_set和multiset</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-01T02:31:08.000Z" title="发表于 2023-08-01 10:31:08">2023-08-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/Blog/categories/c/">c++</a></span></div><div class="content">set和multiset的区别std::set 和 std::multiset 是 C++ 标准库中的两个关联容器，它们都用于存储一组有序且唯一的元素。它们之间的主要区别在于元素的唯一性和插入操作的特点。
+std::set：
+
+std::set 是一个集合容器，其中的元素是唯一的，不允许重复值。
+在 std::set 中插入元素时，如果已经存在相同的元素，则插入操作会被忽略，不会导致重复元素的出现。
+std::set 中的元素会根据元素的值自动进行排序，默认使用元素类型的 &lt; 操作符来进行比较。
+查找和插入的平均时间复杂度为 O(log n)，其中 n 是 std::set 中元素的数量。
+
+std::multiset：
+
+std::multiset 是一个多重集合容器，其中的元素允许重复值，允许插入多个相同的元素。
+在 std::multiset 中插入元素时，插入操作总是会成功，不会忽略重复元素。
+std::multiset 中的元素会根据元素的值自动进行排序，默认使用元素类型的 &lt; 操作符来进行比较。
+查找和插入的平均时间复杂度为 O(log n)，其中 n 是 st ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/Blog/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/Blog/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/Blog/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/Blog/img/headImage.jpg" onerror="this.onerror=null;this.src='/Blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cjt</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XYZcjt"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到cjt的博客！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/18/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%B8%89/" title="C++11新特性(三)">C++11新特性(三)</a><time datetime="2023-08-18T13:52:13.000Z" title="发表于 2023-08-18 21:52:13">2023-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/16/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++强制类型转换">C++强制类型转换</a><time datetime="2023-08-16T12:06:31.000Z" title="发表于 2023-08-16 20:06:31">2023-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%BA%8C/" title="C++11新特性(二)">C++11新特性(二)</a><time datetime="2023-08-04T05:46:49.000Z" title="发表于 2023-08-04 13:46:49">2023-08-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-11%E6%96%B0%E7%89%B9%E6%80%A7(%E4%B8%80)/" title="C++11新特性(一)">C++11新特性(一)</a><time datetime="2023-08-02T06:37:35.000Z" title="发表于 2023-08-02 14:37:35">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" title="C++常用算法">C++常用算法</a><time datetime="2023-08-02T05:35:23.000Z" title="发表于 2023-08-02 13:35:23">2023-08-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/C/"><span class="card-category-list-name">C</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/Hexo/"><span class="card-category-list-name">Hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/Blog/categories/c/"><span class="card-category-list-name">c++</span><span class="card-category-list-count">20</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/Blog/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/Blog/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">30</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">43</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-08-21T07:19:49.775Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/Blog/img/homePage.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cjt</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/Blog/js/utils.js"></script><script src="/Blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

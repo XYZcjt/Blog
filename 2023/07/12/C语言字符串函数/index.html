@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C语言字符串函数 | XYZ's Blog</title><meta name="author" content="cjt"><meta name="copyright" content="cjt"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="字符串函数1.strlen()函数在C语言中，strlen() 是一个标准库函数，用于计算字符串的长度（即字符串中字符的个数，不包括字符串结束符 \0）。 strlen() 函数的原型如下： 1size_t strlen(const char* str);  其中，str 是一个指向以 null 结尾的字符串的指针，返回值是一个 size_t 类型的无符号整数，表示字符串的长度。 下面是一个示例，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言字符串函数">
+<meta property="og:url" content="https://xyzcjt.github.io/Blog/2023/07/12/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="XYZ&#39;s Blog">
+<meta property="og:description" content="字符串函数1.strlen()函数在C语言中，strlen() 是一个标准库函数，用于计算字符串的长度（即字符串中字符的个数，不包括字符串结束符 \0）。 strlen() 函数的原型如下： 1size_t strlen(const char* str);  其中，str 是一个指向以 null 结尾的字符串的指针，返回值是一个 size_t 类型的无符号整数，表示字符串的长度。 下面是一个示例，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg">
+<meta property="article:published_time" content="2023-07-12T12:20:46.000Z">
+<meta property="article:modified_time" content="2023-07-14T09:26:04.078Z">
+<meta property="article:author" content="cjt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg"><link rel="shortcut icon" href="/Blog/img/headImage.jpg"><link rel="canonical" href="https://xyzcjt.github.io/Blog/2023/07/12/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/Blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/Blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C语言字符串函数',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-14 17:26:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/Blog/img/headImage.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/Blog/" title="XYZ's Blog"><span class="site-name">XYZ's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C语言字符串函数</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-12T12:20:46.000Z" title="发表于 2023-07-12 20:20:46">2023-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-14T09:26:04.078Z" title="更新于 2023-07-14 17:26:04">2023-07-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/Blog/categories/C/">C</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C语言字符串函数"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h1><h2 id="1-strlen-函数"><a href="#1-strlen-函数" class="headerlink" title="1.strlen()函数"></a>1.<code>strlen()</code>函数</h2><p>在C语言中，<code>strlen()</code> 是一个标准库函数，用于计算字符串的长度（即字符串中字符的个数，不包括字符串结束符 <code>\0</code>）。</p>
+<p><code>strlen()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>str</code> 是一个指向以 null 结尾的字符串的指针，返回值是一个 <code>size_t</code> 类型的无符号整数，表示字符串的长度。</p>
+<p>下面是一个示例，演示如何使用 <code>strlen()</code> 函数计算字符串的长度：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">size_t</span> length = <span class="built_in">strlen</span>(str);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The length of the string is: %zu\n&quot;</span>, length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们包含了头文件 <code>&lt;string.h&gt;</code>，该头文件中包含了 <code>strlen()</code> 函数的声明。然后，我们定义了一个字符串 <code>str</code>，并使用 <code>strlen()</code> 函数计算其长度，并将结果存储在变量 <code>length</code> 中。最后，我们使用 <code>printf()</code> 函数打印出字符串的长度。</p>
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The length of the string is: 13</span><br></pre></td></tr></table></figure>
+
+<p><code>strlen()</code> 函数在计算字符串长度时，会从给定的字符串地址开始逐个访问字符，直到遇到字符串结束符 <code>\0</code>。然后，它返回已经访问的字符数，即字符串的长度。</p>
+<p>需要注意的是，<code>strlen()</code> 函数只能用于计算以 null 结尾的字符串的长度。如果传递给 <code>strlen()</code> 的参数不是以 null 结尾的字符串，结果将是不确定的，甚至可能导致程序崩溃或产生未定义的行为。</p>
+<h2 id="2-strcpy-函数和strncpy-函数"><a href="#2-strcpy-函数和strncpy-函数" class="headerlink" title="2.strcpy()函数和strncpy()函数"></a>2.<code>strcpy()</code>函数和<code>strncpy()</code>函数</h2><h3 id="2-1strcpy-函数"><a href="#2-1strcpy-函数" class="headerlink" title="2.1strcpy()函数"></a>2.1<code>strcpy()</code>函数</h3><p>在C语言中，<code>strcpy()</code> 是一个标准库函数，用于将一个字符串复制到另一个字符串中，包括字符串结束符 <code>\0</code>。</p>
+<p><code>strcpy()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>destination</code> 是目标字符串的指针，<code>source</code> 是要复制的源字符串的指针。返回值是目标字符串的指针，即 <code>destination</code>。</p>
+<p>下面是一个示例，演示如何使用 <code>strcpy()</code> 函数复制字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> source[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> destination[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcpy</span>(destination, source);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Copied string: %s\n&quot;</span>, destination);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Copied string: Hello, World!</span><br></pre></td></tr></table></figure>
+
+<p><code>strcpy()</code> 函数会将源字符串的内容（包括字符串结束符 <code>\0</code>）复制到目标字符串中，直到遇到源字符串的结束符。复制完成后，目标字符串将成为源字符串的副本。</p>
+<p>需要注意的是，为了避免目标字符串溢出，确保目标字符串具有足够的空间来容纳源字符串及其结束符。否则，可能会导致未定义的行为或内存越界错误。</p>
+<p>另外，由于 <code>strcpy()</code> 函数没有检查目标字符串的长度，如果源字符串过长，可能会导致目标字符串的缓冲区溢出。为了安全起见，可以使用更安全的函数 <code>strncpy()</code> 来限制复制的字符数，以避免溢出。</p>
+<h3 id="2-2strncpy-函数"><a href="#2-2strncpy-函数" class="headerlink" title="2.2strncpy()函数"></a>2.2<code>strncpy()</code>函数</h3><p>在C语言中，<code>strncpy()</code> 是一个标准库函数，用于将一个字符串的指定数量的字符复制到另一个字符串中，包括字符串结束符 <code>\0</code>。</p>
+<p><code>strncpy()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">strncpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source, <span class="type">size_t</span> num)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>destination</code> 是目标字符串的指针，<code>source</code> 是要复制的源字符串的指针，<code>num</code> 是要复制的字符数。返回值是目标字符串的指针，即 <code>destination</code>。</p>
+<p>下面是一个示例，演示如何使用 <code>strncpy()</code> 函数复制字符串的一部分：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> source[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> destination[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strncpy</span>(destination, source, <span class="number">5</span>);</span><br><span class="line">    destination[<span class="number">5</span>] = <span class="string">&#x27;\0&#x27;</span>;  <span class="comment">// 手动添加字符串结束符</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Copied string: %s\n&quot;</span>, destination);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Copied string: Hello</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<code>strncpy()</code> 函数会复制指定数量的字符到目标字符串中。如果源字符串的长度小于指定的字符数 <code>num</code>，则目标字符串将用 <code>\0</code> 填充剩余的空间。如果源字符串的长度大于或等于指定的字符数 <code>num</code>，则目标字符串不会被 <code>\0</code> 结束，因此需要手动添加字符串结束符。</p>
+<p>此外，由于 <code>strncpy()</code> 不会自动截断源字符串，如果目标字符串的缓冲区不足以容纳指定数量的字符，可能会导致目标字符串不以 <code>\0</code> 结束。为了安全起见，在使用 <code>strncpy()</code> 函数时，应该确保目标字符串具有足够的空间来容纳复制的字符数，并手动添加字符串结束符。</p>
+<h2 id="3-strcat-函数和strncat-函数"><a href="#3-strcat-函数和strncat-函数" class="headerlink" title="3.strcat()函数和strncat()函数"></a>3.<code>strcat()</code>函数和<code>strncat()</code>函数</h2><h3 id="3-1strcat-函数"><a href="#3-1strcat-函数" class="headerlink" title="3.1strcat()函数"></a>3.1<code>strcat()</code>函数</h3><p>在C语言中，<code>strcat()</code> 是一个标准库函数，用于将一个字符串连接到另一个字符串的末尾。</p>
+<p><code>strcat()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">strcat</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>destination</code> 是目标字符串的指针，<code>source</code> 是要连接的源字符串的指针。返回值是目标字符串的指针，即 <code>destination</code>。</p>
+<p>下面是一个示例，演示如何使用 <code>strcat()</code> 函数连接字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> destination[<span class="number">20</span>] = <span class="string">&quot;Hello, &quot;</span>;</span><br><span class="line">    <span class="type">char</span> source[] = <span class="string">&quot;World!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcat</span>(destination, source);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Concatenated string: %s\n&quot;</span>, destination);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Concatenated string: Hello, World!</span><br></pre></td></tr></table></figure>
+
+<p><code>strcat()</code> 函数将源字符串的内容连接到目标字符串的末尾，直到遇到源字符串的结束符 <code>\0</code>。连接完成后，目标字符串将包含源字符串的内容，并以 <code>\0</code> 结束。</p>
+<p>需要注意的是，为了避免目标字符串溢出，确保目标字符串具有足够的空间来容纳源字符串及其结束符。否则，可能会导致未定义的行为或内存越界错误。</p>
+<h3 id="3-2strncat-函数"><a href="#3-2strncat-函数" class="headerlink" title="3.2strncat()函数"></a>3.2<code>strncat()</code>函数</h3><p>此外，还有一个相关的函数 <code>strncat()</code>，它允许指定要连接的源字符串的最大字符数，以避免目标字符串溢出。<code>strncat()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">strncat</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source, <span class="type">size_t</span> num)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>num</code> 表示要连接的最大字符数。使用 <code>strncat()</code> 函数时，需要确保目标字符串具有足够的空间来容纳源字符串的部分内容以及结束符。</p>
+<h2 id="4-strcmp-函数和strncmp-函数"><a href="#4-strcmp-函数和strncmp-函数" class="headerlink" title="4.strcmp()函数和strncmp()函数"></a>4.<code>strcmp()</code>函数和<code>strncmp()</code>函数</h2><h3 id="4-1strcmp-函数"><a href="#4-1strcmp-函数" class="headerlink" title="4.1strcmp()函数"></a>4.1<code>strcmp()</code>函数</h3><p>在C语言中，<code>strcmp()</code> 是一个标准库函数，用于比较两个字符串的大小。</p>
+<p><code>strcmp()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>str1</code> 和 <code>str2</code> 是要比较的两个字符串的指针。返回值是一个整数，表示比较结果，具体含义如下：</p>
+<ul>
+<li>若 <code>str1</code> 小于 <code>str2</code>，则返回一个负整数。</li>
+<li>若 <code>str1</code> 等于 <code>str2</code>，则返回 0。</li>
+<li>若 <code>str1</code> 大于 <code>str2</code>，则返回一个正整数。</li>
+</ul>
+<p>下面是一个示例，演示如何使用 <code>strcmp()</code> 函数比较字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str3[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> result1 = <span class="built_in">strcmp</span>(str1, str2);</span><br><span class="line">    <span class="type">int</span> result2 = <span class="built_in">strcmp</span>(str1, str3);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Comparison result (str1 vs str2): %d\n&quot;</span>, result1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Comparison result (str1 vs str3): %d\n&quot;</span>, result2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Comparison result (str1 vs str2): -1</span><br><span class="line">Comparison result (str1 vs str3): 0</span><br></pre></td></tr></table></figure>
+
+<p><code>strcmp()</code> 函数根据字符串的字典顺序进行比较。它会逐个比较两个字符串中对应位置的字符，直到遇到不相等的字符或遇到字符串结束符 <code>\0</code>。比较是按照字符的 ASCII 值进行的。</p>
+<p>需要注意的是，<code>strcmp()</code> 函数对大小写敏感，因此大写字母和小写字母被认为是不同的。</p>
+<h3 id="4-2strncmp-函数"><a href="#4-2strncmp-函数" class="headerlink" title="4.2strncmp()函数"></a>4.2<code>strncmp()</code>函数</h3><p>在C语言中，<code>strncmp()</code> 是一个标准库函数，用于比较两个字符串的前 n 个字符是否相等。</p>
+<p><code>strncmp()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">strncmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>str1</code> 和 <code>str2</code> 是要比较的两个字符串的指针，<code>n</code> 是要比较的字符数。返回值是一个整数，表示比较结果，具体含义如下：</p>
+<ul>
+<li>若 <code>str1</code> 小于 <code>str2</code>，则返回一个负整数。</li>
+<li>若 <code>str1</code> 等于 <code>str2</code>，则返回 0。</li>
+<li>若 <code>str1</code> 大于 <code>str2</code>，则返回一个正整数。</li>
+</ul>
+<p>下面是一个示例，演示如何使用 <code>strncmp()</code> 函数比较字符串的前 n 个字符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">&quot;Hello, Friend!&quot;</span>;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">5</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">strncmp</span>(str1, str2, n);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Comparison result (str1 vs str2): %d\n&quot;</span>, result);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparison result (str1 vs str2): 0</span><br></pre></td></tr></table></figure>
+
+<p><code>strncmp()</code> 函数会逐个比较两个字符串中对应位置的字符，直到比较完 n 个字符、遇到不相等的字符或遇到字符串结束符 <code>\0</code>。比较是按照字符的 ASCII 值进行的。</p>
+<p>需要注意的是，当 n 达到字符串的长度或遇到字符串结束符时，比较会提前结束。因此，在使用 <code>strncmp()</code> 函数时，需要确保字符串具有足够的长度，以避免未定义的行为。</p>
+<h2 id="5-strstr-函数"><a href="#5-strstr-函数" class="headerlink" title="5.strstr()函数"></a>5.<code>strstr()</code>函数</h2><p>在C语言中，<code>strstr()</code> 是一个标准库函数，用于在一个字符串中查找子字符串的第一次出现位置。</p>
+<p><code>strstr()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* haystack, <span class="type">const</span> <span class="type">char</span>* needle)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>haystack</code> 是要查找的字符串，<code>needle</code> 是要查找的子字符串。返回值是一个指向第一次出现的子字符串的指针，或者是一个空指针（如果子字符串未找到）。</p>
+<p>下面是一个示例，演示如何使用 <code>strstr()</code> 函数查找子字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> haystack[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> needle[] = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">char</span>* result = <span class="built_in">strstr</span>(haystack, needle);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (result != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Substring found at index: %ld\n&quot;</span>, result - haystack);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Substring not found.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Substring found at index: 7</span><br></pre></td></tr></table></figure>
+
+<p><code>strstr()</code> 函数会在 <code>haystack</code> 中逐个比较字符，直到找到与 <code>needle</code> 相同的子字符串的第一次出现位置，或者遍历完整个 <code>haystack</code> 字符串且未找到匹配的子字符串。如果找到子字符串，它将返回指向子字符串的指针，否则返回空指针。</p>
+<h2 id="6-strtok-函数"><a href="#6-strtok-函数" class="headerlink" title="6.strtok()函数"></a>6.<code>strtok()</code>函数</h2><p>在C语言中，<code>strtok()</code> 是一个标准库函数，用于将字符串分割成多个标记（token）。</p>
+<p><code>strtok()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">strtok</span><span class="params">(<span class="type">char</span>* str, <span class="type">const</span> <span class="type">char</span>* delim)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>str</code> 是要分割的字符串，<code>delim</code> 是分割符（一个字符串），这个字符串里面包含了多个分隔符。返回值是一个指向当前标记的指针，或者是一个空指针（如果没有更多的标记）。</p>
+<p><code>strtok()</code> 函数在首次调用时，需要传递要分割的字符串 <code>str</code>。在后续调用中，传递 <code>NULL</code> 作为 <code>str</code>，以继续分割之前传递的字符串。</p>
+<p>下面是一个示例，演示如何使用 <code>strtok()</code> 函数分割字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;Hello, World! This is a sample string.&quot;</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> delim[] = <span class="string">&quot; &quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span>* token = strtok(str, delim);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (token != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, token);</span><br><span class="line">        token = strtok(<span class="literal">NULL</span>, delim);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们包含了头文件 <code>&lt;string.h&gt;</code>，该头文件中包含了 <code>strtok()</code> 函数的声明。然后，我们定义了一个字符串 <code>str</code> 和一个分割符字符串 <code>delim</code>。使用 <code>strtok()</code> 函数，我们将 <code>str</code> 字符串按照 <code>delim</code> 分割成多个标记，并通过循环打印出每个标记。在每次循环迭代中，我们通过传递 <code>NULL</code> 继续分割之前的字符串。</p>
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Hello,</span><br><span class="line">World!</span><br><span class="line">This</span><br><span class="line">is</span><br><span class="line">a</span><br><span class="line">sample</span><br><span class="line">string.</span><br></pre></td></tr></table></figure>
+
+<p><code>strtok()</code> 函数会根据分割符将字符串分割成多个标记。每次调用 <code>strtok()</code> 函数，它会返回一个指向当前标记的指针，并将原始字符串中的分割符替换为空字符 <code>\0</code>，以便将字符串分割成多个部分。在后续调用中，传递 <code>NULL</code> 继续获取下一个标记。</p>
+<p>需要注意的是，<code>strtok()</code> 函数会修改原始字符串，将分割符替换为空字符。如果需要保留原始字符串，可以创建一个副本进行分割操作。</p>
+<h2 id="7-strerror-函数"><a href="#7-strerror-函数" class="headerlink" title="7.strerror()函数"></a>7.<code>strerror()</code>函数</h2><p>在C语言中，<code>strerror()</code> 函数和全局变量 <code>errno</code> 通常一起使用，用于处理和报告函数调用过程中的错误。</p>
+<p><code>strerror()</code> 函数用于根据给定的错误码获取相应的错误描述字符串，而全局变量 <code>errno</code> 存储了最近一次函数调用中发生的错误码。</p>
+<p>以下是使用 <code>strerror()</code> 函数和全局变量 <code>errno</code> 的一个示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span> <span class="comment">//errno的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    FILE* file = fopen(<span class="string">&quot;nonexistent_file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (file == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Failed to open file: %s\n&quot;</span>, strerror(errno));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们包含了头文件 <code>&lt;stdio.h&gt;</code>、<code>&lt;string.h&gt;</code> 和 <code>&lt;errno.h&gt;</code>，分别包含了 <code>strerror()</code> 函数的声明、<code>NULL</code> 值和错误码常量。然后，我们尝试打开一个不存在的文件 <code>&quot;nonexistent_file.txt&quot;</code>，并将返回的文件指针存储在 <code>file</code> 中。如果文件指针为 <code>NULL</code>，表示打开文件失败，我们使用 <code>strerror(errno)</code> 获取与错误码 <code>errno</code> 相应的错误描述字符串，并通过 <code>printf()</code> 函数将错误信息打印出来。</p>
+<p>运行上述代码，将得到类似如下的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to open file: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<code>errno</code> 是一个全局变量，它的值在每次函数调用发生错误时会被设置为相应的错误码。因此，在使用 <code>strerror()</code> 函数之前，需要确保发生了错误，并且 <code>errno</code> 包含了正确的错误码。另外，每个函数在发生错误时会记录其特定的错误码，所以在不同的函数调用后，<code>errno</code> 的值会有所变化。</p>
+<p>总结来说，<code>strerror()</code> 函数和全局变量 <code>errno</code> 是一对常用的工具，用于处理和报告函数调用过程中的错误。它们结合使用，可以提供有关错误发生原因的详细信息，并帮助进行错误处理和调试。</p>
+<h2 id="8-memcpy-函数"><a href="#8-memcpy-函数" class="headerlink" title="8.memcpy()函数"></a>8.<code>memcpy()</code>函数</h2><p>在C语言中，<code>memcpy()</code> 是一个标准库函数，用于在内存之间<strong>进行字节级别的拷贝</strong>。</p>
+<p><code>memcpy()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">memcpy</span><span class="params">(<span class="type">void</span>* dest, <span class="type">const</span> <span class="type">void</span>* src, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>dest</code> 是目标内存的指针，<code>src</code> 是源内存的指针，<code>n</code> 是要拷贝的字节数。返回值是指向目标内存的指针（即 <code>dest</code>）。</p>
+<p>下面是一个示例，演示如何使用 <code>memcpy()</code> 函数进行内存拷贝：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> src[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    <span class="type">char</span> dest[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memcpy</span>(dest, src, <span class="built_in">strlen</span>(src) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Copied string: %s\n&quot;</span>, dest);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们包含了头文件 <code>&lt;string.h&gt;</code>，该头文件中包含了 <code>memcpy()</code> 函数的声明。然后，我们定义了一个源字符串 <code>src</code>，并初始化它。接下来，我们定义了一个目标字符数组 <code>dest</code>，用于存储拷贝后的字符串。使用 <code>memcpy()</code> 函数，我们将源字符串 <code>src</code> 的内容拷贝到目标字符数组 <code>dest</code> 中，拷贝的字节数为 <code>strlen(src) + 1</code>（包括字符串结束符 <code>\0</code>）。最后，我们使用 <code>printf()</code> 函数打印出拷贝后的字符串。</p>
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Copied string: Hello, World!</span><br></pre></td></tr></table></figure>
+
+<p><code>memcpy()</code> 函数按字节复制源内存块的内容到目标内存块中。它可以用于复制任意类型的数据，如字符数组、整数数组、结构体等。</p>
+<p>需要注意的是，<code>memcpy()</code> 函数不会对源和目标内存之间的重叠进行处理。如果源和目标内存块有重叠的部分，结果将是未定义的。</p>
+<h2 id="9-memmove-函数"><a href="#9-memmove-函数" class="headerlink" title="9.memmove()函数"></a>9.<code>memmove()</code>函数</h2><p>在C语言中，<code>memmove()</code> 是一个标准库函数，用于在内存之间进行字节级别的拷贝。</p>
+<p><code>memmove()</code> 函数的原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">memmove</span><span class="params">(<span class="type">void</span>* dest, <span class="type">const</span> <span class="type">void</span>* src, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>dest</code> 是目标内存的指针，<code>src</code> 是源内存的指针，<code>n</code> 是要拷贝的字节数。返回值是指向目标内存的指针（即 <code>dest</code>）。</p>
+<p><code>memmove()</code> 函数与 <code>memcpy()</code> 函数类似，都用于进行内存拷贝操作。但是，<code>memmove()</code> 函数对源和目标内存之间的重叠情况进行了处理，可以正确地处理重叠内存块的拷贝。</p>
+<p>下面是一个示例，演示如何使用 <code>memmove()</code> 函数进行内存拷贝：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line">    memmove(str + <span class="number">7</span>, str, <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Modified string: %s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们包含了头文件 <code>&lt;string.h&gt;</code>，该头文件中包含了 <code>memmove()</code> 函数的声明。然后，我们定义了一个字符数组 <code>str</code>，并初始化它。使用 <code>memmove()</code> 函数，我们将 <code>str</code> 中前 7 个字符的内容拷贝到字符串的后半部分。由于源内存块和目标内存块有重叠，使用 <code>memmove()</code> 可以正确地处理这种情况。最后，我们使用 <code>printf()</code> 函数打印出修改后的字符串。</p>
+<p>运行上述代码，将得到如下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Modified string: World, World!</span><br></pre></td></tr></table></figure>
+
+<p><code>memmove()</code> 函数与 <code>memcpy()</code> 函数的用法类似，但是可以处理源和目标内存之间的重叠。它可以用于复制任意类型的数据，如字符数组、整数数组、结构体等。</p>
+<h2 id="10-memcmp-函数"><a href="#10-memcmp-函数" class="headerlink" title="10.memcmp()函数"></a>10.<code>memcmp()</code>函数</h2><p>在C语言中，<code>memcmp()</code>是一个用于比较内存块的函数，它在<code>&lt;string.h&gt;</code>头文件中声明。<code>memcmp()</code>函数用于比较两个内存区域的内容，并返回它们的比较结果。</p>
+<p>函数原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">memcmp</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *ptr1, <span class="type">const</span> <span class="type">void</span> *ptr2, <span class="type">size_t</span> num)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>ptr1</code>：指向要比较的第一个内存区域的指针。</li>
+<li><code>ptr2</code>：指向要比较的第二个内存区域的指针。</li>
+<li><code>num</code>：要比较的字节数。</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>如果第一个内存区域小于第二个内存区域，则返回一个负整数。</li>
+<li>如果第一个内存区域大于第二个内存区域，则返回一个正整数。</li>
+<li>如果两个内存区域相等，则返回零。</li>
+</ul>
+<p>下面是一个使用<code>memcmp()</code>函数比较两个字符串的示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str1[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    <span class="type">char</span> str2[] = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">memcmp</span>(str1, str2, <span class="keyword">sizeof</span>(str1));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (result &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is less than str2\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (result &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is greater than str2\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;str1 is equal to str2\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们使用<code>memcmp()</code>函数比较了两个字符串<code>str1</code>和<code>str2</code>的内容。根据比较结果，我们输出相应的消息。</p>
+<p>注意，<code>memcmp()</code>函数是按字节进行比较的，因此在比较字符串时，需要确保字符串已经以NULL结尾（即C字符串的约定），否则可能会得到意外的结果。</p>
+<h2 id="11-memest-函数"><a href="#11-memest-函数" class="headerlink" title="11.memest()函数"></a>11.<code>memest()</code>函数</h2><p>在C语言中，没有标准库函数名为<code>memest()</code>。也许你可能想要提到的是<code>memset()</code>函数，它用于设置一块内存的值。</p>
+<p><code>memset()</code>函数在<code>&lt;string.h&gt;</code>头文件中声明，用于将指定的值复制到一块内存区域中的<strong>每个字节</strong>。</p>
+<p>函数原型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">memset</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">int</span> value, <span class="type">size_t</span> num)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>ptr</code>：指向要设置值的内存区域的指针。</li>
+<li><code>value</code>：要设置的值，以整数形式传递。通常使用无符号字符表示，如<code>&#39;\0&#39;</code>或<code>0</code>。</li>
+<li><code>num</code>：要设置的字节数。</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>返回指向目标内存区域的指针。</li>
+</ul>
+<p>以下是一个使用<code>memset()</code>函数将一块内存区域设置为特定值的示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">10</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span>(str, <span class="string">&#x27;A&#x27;</span>, <span class="keyword">sizeof</span>(str));</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;str: %s\n&quot;</span>, str);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，我们使用<code>memset()</code>函数将字符数组<code>str</code>的每个字节设置为字符<code>&#39;A&#39;</code>。然后，我们打印出<code>str</code>的值，结果将是10个连续的字符<code>&#39;A&#39;</code>。</p>
+<p>请注意，<code>memset()</code>函数<strong>是按字节进行设置的</strong>，因此在<strong>处理非字符类型</strong>的内存区域时要小心。比如:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">memset</span>(arr, <span class="number">1</span>, <span class="keyword">sizeof</span>(arr));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br><span class="line"><span class="number">16843009</span></span><br></pre></td></tr></table></figure>
+
+<p>是因为在memset()函数赋值时，是每个字节都赋值为1，所以出现了以上结果。</p>
+<p><img src="/Blog/images/C/6.png" alt="6"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog">cjt</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog/2023/07/12/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/">https://xyzcjt.github.io/Blog/2023/07/12/C%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xyzcjt.github.io/Blog" target="_blank">XYZ's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/Blog/img/headImage.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Blog/2023/07/13/C%E8%AF%AD%E8%A8%80%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="C语言动态内存管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C语言动态内存管理</div></div></a></div><div class="next-post pull-right"><a href="/Blog/2023/07/11/C%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/" title="C语言指针"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C语言指针</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/Blog/img/headImage.jpg" onerror="this.onerror=null;this.src='/Blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cjt</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XYZcjt"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到cjt的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-strlen-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.strlen()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-strcpy-%E5%87%BD%E6%95%B0%E5%92%8Cstrncpy-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">2.strcpy()函数和strncpy()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1strcpy-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1strcpy()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2strncpy-%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2strncpy()函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-strcat-%E5%87%BD%E6%95%B0%E5%92%8Cstrncat-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3.strcat()函数和strncat()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1strcat-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1strcat()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2strncat-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2strncat()函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-strcmp-%E5%87%BD%E6%95%B0%E5%92%8Cstrncmp-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">4.strcmp()函数和strncmp()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1strcmp-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1strcmp()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2strncmp-%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2strncmp()函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-strstr-%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">5.strstr()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-strtok-%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">6.strtok()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-strerror-%E5%87%BD%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">7.strerror()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-memcpy-%E5%87%BD%E6%95%B0"><span class="toc-number">1.8.</span> <span class="toc-text">8.memcpy()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-memmove-%E5%87%BD%E6%95%B0"><span class="toc-number">1.9.</span> <span class="toc-text">9.memmove()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-memcmp-%E5%87%BD%E6%95%B0"><span class="toc-number">1.10.</span> <span class="toc-text">10.memcmp()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-memest-%E5%87%BD%E6%95%B0"><span class="toc-number">1.11.</span> <span class="toc-text">11.memest()函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/18/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%B8%89/" title="C++11新特性(三)">C++11新特性(三)</a><time datetime="2023-08-18T13:52:13.000Z" title="发表于 2023-08-18 21:52:13">2023-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/16/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++强制类型转换">C++强制类型转换</a><time datetime="2023-08-16T12:06:31.000Z" title="发表于 2023-08-16 20:06:31">2023-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%BA%8C/" title="C++11新特性(二)">C++11新特性(二)</a><time datetime="2023-08-04T05:46:49.000Z" title="发表于 2023-08-04 13:46:49">2023-08-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-11%E6%96%B0%E7%89%B9%E6%80%A7(%E4%B8%80)/" title="C++11新特性(一)">C++11新特性(一)</a><time datetime="2023-08-02T06:37:35.000Z" title="发表于 2023-08-02 14:37:35">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" title="C++常用算法">C++常用算法</a><time datetime="2023-08-02T05:35:23.000Z" title="发表于 2023-08-02 13:35:23">2023-08-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cjt</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/Blog/js/utils.js"></script><script src="/Blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>vi编辑器 | XYZ's Blog</title><meta name="author" content="cjt"><meta name="copyright" content="cjt"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="vi编辑器1.基本使用命令模式（Command mode）：  光标移动： 0（零）：移动到行首 $：移动到行尾 G：移动到文件末尾 gg：移动到文件开头 :n：跳转到第n行（n为行号）   插入和修改： i：在光标前插入文本 a：在光标后插入文本 o：在当前行下方插入新行 r：替换当前字符 cw：替换从光标位置到单词末尾的文本 C：替换从光标位置到行末的文本 x：删除当前字符 dd：删除当前行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vi编辑器">
+<meta property="og:url" content="https://xyzcjt.github.io/Blog/2023/07/18/vi%E7%BC%96%E8%BE%91%E5%99%A8/index.html">
+<meta property="og:site_name" content="XYZ&#39;s Blog">
+<meta property="og:description" content="vi编辑器1.基本使用命令模式（Command mode）：  光标移动： 0（零）：移动到行首 $：移动到行尾 G：移动到文件末尾 gg：移动到文件开头 :n：跳转到第n行（n为行号）   插入和修改： i：在光标前插入文本 a：在光标后插入文本 o：在当前行下方插入新行 r：替换当前字符 cw：替换从光标位置到单词末尾的文本 C：替换从光标位置到行末的文本 x：删除当前字符 dd：删除当前行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg">
+<meta property="article:published_time" content="2023-07-17T18:50:37.000Z">
+<meta property="article:modified_time" content="2023-07-17T20:19:27.029Z">
+<meta property="article:author" content="cjt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg"><link rel="shortcut icon" href="/Blog/img/headImage.jpg"><link rel="canonical" href="https://xyzcjt.github.io/Blog/2023/07/18/vi%E7%BC%96%E8%BE%91%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/Blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/Blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vi编辑器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-18 04:19:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/Blog/img/headImage.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/Blog/" title="XYZ's Blog"><span class="site-name">XYZ's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vi编辑器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-17T18:50:37.000Z" title="发表于 2023-07-18 02:50:37">2023-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-17T20:19:27.029Z" title="更新于 2023-07-18 04:19:27">2023-07-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/Blog/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="vi编辑器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="vi编辑器"><a href="#vi编辑器" class="headerlink" title="vi编辑器"></a>vi编辑器</h1><h2 id="1-基本使用"><a href="#1-基本使用" class="headerlink" title="1.基本使用"></a>1.基本使用</h2><p>命令模式（Command mode）：</p>
+<ol>
+<li>光标移动：<ul>
+<li>0（零）：移动到行首</li>
+<li>$：移动到行尾</li>
+<li>G：移动到文件末尾</li>
+<li>gg：移动到文件开头</li>
+<li>:n：跳转到第n行（n为行号）</li>
+</ul>
+</li>
+<li>插入和修改：<ul>
+<li>i：在光标前插入文本</li>
+<li>a：在光标后插入文本</li>
+<li>o：在当前行下方插入新行</li>
+<li>r：替换当前字符</li>
+<li>cw：替换从光标位置到单词末尾的文本</li>
+<li>C：替换从光标位置到行末的文本</li>
+<li>x：删除当前字符</li>
+<li>dd：删除当前行</li>
+<li>yy：复制当前行</li>
+<li>p：粘贴剪贴板内容</li>
+</ul>
+</li>
+<li>撤销和重做：<ul>
+<li>u：撤销上一次操作</li>
+<li>Ctrl+r：重做上一次被撤销的操作</li>
+</ul>
+</li>
+<li>查找和替换：<ul>
+<li>&#x2F;pattern：向后查找匹配”pattern”的文本</li>
+<li>?pattern：向前查找匹配”pattern”的文本</li>
+<li>n：重复上一次查找</li>
+<li>:%s&#x2F;old&#x2F;new&#x2F;g：替换当前行中所有的”old”为”new”</li>
+<li>:%s&#x2F;old&#x2F;new&#x2F;gc：替换当前行中所有的”old”为”new”，并逐个确认是否替换</li>
+</ul>
+</li>
+<li>复制和粘贴：<ul>
+<li>yy：复制当前行</li>
+<li>p：粘贴剪贴板内容</li>
+</ul>
+</li>
+<li>保存和退出：<ul>
+<li>:w：保存文件</li>
+<li>:q：退出编辑器</li>
+<li>:wq：保存文件并退出</li>
+<li>:q!：强制退出，不保存文件</li>
+</ul>
+</li>
+</ol>
+<p>可以通过 <code>man vi</code> 命令查看Vi编辑器的手册页，了解更多详细的操作指令和功能。</p>
+<p>在Vi编辑器中，<code>vsp</code>命令用于在Vi编辑器的窗口中垂直分割当前打开的文件，并在新窗口中打开另一个文件。它允许您同时在同一个Vi编辑器会话中查看和编辑多个文件。</p>
+<h2 id="2-VSP分割屏幕命令"><a href="#2-VSP分割屏幕命令" class="headerlink" title="2.VSP分割屏幕命令"></a>2.VSP分割屏幕命令</h2><p>要使用<code>vsp</code>命令，可以按下以下步骤：</p>
+<ol>
+<li>打开Vi编辑器。</li>
+<li>在Vi命令模式下，输入<code>:vsp &lt;文件路径&gt;</code>。<ul>
+<li><code>&lt;文件路径&gt;</code>是要在新窗口中打开的文件的路径。</li>
+</ul>
+</li>
+<li>按下回车键。</li>
+</ol>
+<p>这将在Vi编辑器中创建一个垂直分割窗口，并在新窗口中打开指定的文件。您现在可以在两个窗口之间切换，并在它们之间进行编辑。</p>
+<p>要在窗口之间切换，可以使用以下键盘命令：</p>
+<ul>
+<li><code>Ctrl+w</code>，然后按下左箭头或右箭头：在水平方向上切换窗口。</li>
+<li><code>Ctrl+w</code>，然后按下上箭头或下箭头：在垂直方向上切换窗口。</li>
+</ul>
+<p>注意：<code>vsp</code>命令用于在垂直方向上分割窗口。如果要在水平方向上分割窗口，可以使用<code>sp</code>命令。</p>
+<h2 id="3-自定义快捷键自动生成c语言的main函数"><a href="#3-自定义快捷键自动生成c语言的main函数" class="headerlink" title="3.自定义快捷键自动生成c语言的main函数"></a>3.自定义快捷键自动生成c语言的main函数</h2><p>先进入<code>.vimrc</code>文件，在<code>.vimrc</code>文件末尾加入以下代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map mf i<span class="comment">#include &lt;stdio.h&gt;&lt;Esc&gt;&lt;Esc&gt;oint main(int argc, char *argv[])&lt;Esc&gt;o&#123;&lt;Esc&gt;oreturn 0;&lt;Esc&gt;o&#125;&lt;Esc&gt;2ko</span></span><br></pre></td></tr></table></figure>
+
+<p>然后创建<code>.c</code>文件时，按快捷键<code>mf</code>快速生成<code>main()</code>函数框架</p>
+<p><strong>.vimrc在哪里</strong></p>
+<p>这里是指根目录下<code>(cd ~)</code>的名为<code>.vimrc</code>的文件，它是一个隐藏文件，使用<code>ll(ls -l)</code>或<code>la(ls -a)</code>命令，即可以看到。</p>
+<p><strong>权限问题</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 777 .vimrc</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog">cjt</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog/2023/07/18/vi%E7%BC%96%E8%BE%91%E5%99%A8/">https://xyzcjt.github.io/Blog/2023/07/18/vi%E7%BC%96%E8%BE%91%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xyzcjt.github.io/Blog" target="_blank">XYZ's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/Blog/img/headImage.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Blog/2023/07/18/Linux%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%91%BD%E4%BB%A4/" title="Linux解压缩命令"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux解压缩命令</div></div></a></div><div class="next-post pull-right"><a href="/Blog/2023/07/18/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="Linux基础知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux基础知识</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/Blog/img/headImage.jpg" onerror="this.onerror=null;this.src='/Blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cjt</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XYZcjt"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到cjt的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vi%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">vi编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-VSP%E5%88%86%E5%89%B2%E5%B1%8F%E5%B9%95%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">2.VSP分割屏幕命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90c%E8%AF%AD%E8%A8%80%E7%9A%84main%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3.自定义快捷键自动生成c语言的main函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/18/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%B8%89/" title="C++11新特性(三)">C++11新特性(三)</a><time datetime="2023-08-18T13:52:13.000Z" title="发表于 2023-08-18 21:52:13">2023-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/16/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++强制类型转换">C++强制类型转换</a><time datetime="2023-08-16T12:06:31.000Z" title="发表于 2023-08-16 20:06:31">2023-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%BA%8C/" title="C++11新特性(二)">C++11新特性(二)</a><time datetime="2023-08-04T05:46:49.000Z" title="发表于 2023-08-04 13:46:49">2023-08-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-11%E6%96%B0%E7%89%B9%E6%80%A7(%E4%B8%80)/" title="C++11新特性(一)">C++11新特性(一)</a><time datetime="2023-08-02T06:37:35.000Z" title="发表于 2023-08-02 14:37:35">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" title="C++常用算法">C++常用算法</a><time datetime="2023-08-02T05:35:23.000Z" title="发表于 2023-08-02 13:35:23">2023-08-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cjt</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/Blog/js/utils.js"></script><script src="/Blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

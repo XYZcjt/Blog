@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C语言程序编译 | XYZ's Blog</title><meta name="author" content="cjt"><meta name="copyright" content="cjt"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C语言程序编译1.C语言编译步骤C语言编译的几个阶段是：  预处理：删除注释，宏扩展，文件包含，生成.i文件。 编译：检查语法错误，将预处理后的代码转换为汇编指令，生成.s文件。 汇编：将汇编指令翻译为机器代码，生成.o文件。 链接：将库文件和对象文件链接起来，生成可执行文件。  这些阶段可以用gcc命令的不同选项来控制，例如：  gcc -E hello.c &#x2F;&#x2F;只执行预处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言程序编译">
+<meta property="og:url" content="https://xyzcjt.github.io/Blog/2023/07/16/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:site_name" content="XYZ&#39;s Blog">
+<meta property="og:description" content="C语言程序编译1.C语言编译步骤C语言编译的几个阶段是：  预处理：删除注释，宏扩展，文件包含，生成.i文件。 编译：检查语法错误，将预处理后的代码转换为汇编指令，生成.s文件。 汇编：将汇编指令翻译为机器代码，生成.o文件。 链接：将库文件和对象文件链接起来，生成可执行文件。  这些阶段可以用gcc命令的不同选项来控制，例如：  gcc -E hello.c &#x2F;&#x2F;只执行预处理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg">
+<meta property="article:published_time" content="2023-07-16T09:44:37.000Z">
+<meta property="article:modified_time" content="2023-08-09T07:38:27.127Z">
+<meta property="article:author" content="cjt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xyzcjt.github.io/Blog/img/headImage.jpg"><link rel="shortcut icon" href="/Blog/img/headImage.jpg"><link rel="canonical" href="https://xyzcjt.github.io/Blog/2023/07/16/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/Blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/Blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C语言程序编译',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-09 15:38:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/Blog/img/headImage.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/Blog/" title="XYZ's Blog"><span class="site-name">XYZ's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C语言程序编译</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-16T09:44:37.000Z" title="发表于 2023-07-16 17:44:37">2023-07-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-09T07:38:27.127Z" title="更新于 2023-08-09 15:38:27">2023-08-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/Blog/categories/C/">C</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C语言程序编译"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="C语言程序编译"><a href="#C语言程序编译" class="headerlink" title="C语言程序编译"></a>C语言程序编译</h1><h2 id="1-C语言编译步骤"><a href="#1-C语言编译步骤" class="headerlink" title="1.C语言编译步骤"></a>1.C语言编译步骤</h2><p>C语言编译的几个阶段是：</p>
+<ul>
+<li><strong>预处理</strong>：删除注释，宏扩展，文件包含，生成.i文件。</li>
+<li><strong>编译</strong>：检查语法错误，将预处理后的代码转换为汇编指令，生成.s文件。</li>
+<li><strong>汇编</strong>：将汇编指令翻译为机器代码，生成.o文件。</li>
+<li><strong>链接</strong>：将库文件和对象文件链接起来，生成可执行文件。</li>
+</ul>
+<p>这些阶段可以用<code>gcc</code>命令的不同选项来控制，例如：</p>
+<ul>
+<li><code>gcc -E hello.c</code> &#x2F;&#x2F;只执行预处理</li>
+<li><code>gcc -S hello.c</code> &#x2F;&#x2F;执行预处理和编译</li>
+<li><code>gcc -c hello.c</code> &#x2F;&#x2F;执行预处理，编译和汇编</li>
+<li><code>gcc -o hello hello.c</code> &#x2F;&#x2F;执行所有阶段并指定输出文件名</li>
+</ul>
+<h2 id="2-C语言预处理详解"><a href="#2-C语言预处理详解" class="headerlink" title="2.C语言预处理详解"></a>2.C语言预处理详解</h2><h3 id="2-1预定义符号"><a href="#2-1预定义符号" class="headerlink" title="2.1预定义符号"></a>2.1预定义符号</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__FILE__      <span class="comment">//进行编译的源文件</span></span><br><span class="line">__LINE__     <span class="comment">//文件当前的行号</span></span><br><span class="line">__DATE__    <span class="comment">//文件被编译的日期</span></span><br><span class="line">__TIME__    <span class="comment">//文件被编译的时间</span></span><br><span class="line">__STDC__    <span class="comment">//如果编译器遵循ANSI C，其值为1，否则未定义</span></span><br></pre></td></tr></table></figure>
+
+<p>预定义符号可以用在程序中的任何地方，通常用于调试或输出程序的相关信息。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This file is %s\n&quot;</span>, __FILE__);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This is line %d\n&quot;</span>, __LINE__);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This file was compiled on %s at %s\n&quot;</span>, __DATE__, __TIME__);</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> __STDC__</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This compiler conforms to ANSI C\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This compiler does not conform to ANSI C\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出可能是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This file is test.c</span><br><span class="line">This is line 5</span><br><span class="line">This file was compiled on Jan 01 2021 at 12:34:56</span><br><span class="line">This compiler conforms to ANSI C</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-define"><a href="#2-2-define" class="headerlink" title="2.2#define"></a>2.2<code>#define</code></h3><p>C语言中，#define是一个预处理指令，它可以用来定义标识符或宏。定义标识符的作用是给一个常量或表达式取一个名字，方便在程序中使用。定义宏的作用是给一个带参数的表达式或语句取一个名字，实现类似于函数的功能，但不占用内存空间，提高效率。</p>
+<p>定义标识符的格式是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符 字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14159 <span class="comment">//定义圆周率</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(a,b) ((a)&gt;(b)?(a):(b)) <span class="comment">//定义求两个数的最大值</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>标识符一般用大写字母，以便于区分。</li>
+<li>定义标识符时不要加分号。</li>
+<li>定义标识符时要注意括号的使用，以防止运算优先级的问题。</li>
+<li>定义标识符时要避免重名或与关键字冲突。</li>
+<li>可以用<code>#undef</code>指令取消标识符的定义。</li>
+</ul>
+<p>定义宏的格式是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 宏名(参数列表) 字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SQUARE(x) ((x)*(x)) <span class="comment">//定义求平方的宏</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PRINT(x) printf(<span class="string">&quot;%d\n&quot;</span>, (x)) <span class="comment">//定义打印整数的宏</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>宏名和参数列表的左括号之间不能有空格。</li>
+<li>宏名和参数列表中的参数都要用括号括起来，以防止替换时出现错误。</li>
+<li>宏替换只是简单的文本替换，不做类型检查或计算。</li>
+<li>宏替换在预处理阶段进行，不占用运行时间，但可能增加代码长度。</li>
+<li>宏可以实现一些函数不能做到的功能，但也不能进行递归调用或调试。</li>
+</ul>
+<h3 id="2-3-和"><a href="#2-3-和" class="headerlink" title="2.3#和##"></a>2.3<code>#</code>和<code>##</code></h3><p>C语言中，#和##是两种特殊的预处理符号，它们可以用在宏定义中，实现一些特殊的功能。</p>
+<p>#的作用是<code>将宏参数转换为字符串</code>，也就是在宏参数两边加上双引号。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> STR(x) #x</span></span><br><span class="line"><span class="built_in">printf</span>(STR(Hello)); <span class="comment">//输出&quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>#只能用在带参数的宏定义中，不能用在无参数的宏定义中。</li>
+<li>#只能用在宏定义的替换部分，不能用在宏名或参数列表中。</li>
+<li>#后面必须紧跟一个宏参数，不能有空格或其他符号。</li>
+<li>#不会对宏参数进行计算或展开，只是简单地转换为字符串。</li>
+</ul>
+<p>##的作用是将两个宏参数连接成一个标识符，也就是把两个宏参数之间的空格去掉。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> CONCAT(x,y) x##y</span></span><br><span class="line"><span class="type">int</span> n = CONCAT(<span class="number">123</span>,<span class="number">456</span>); <span class="comment">//相当于int n = 123456;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>##只能用在带参数的宏定义中，不能用在无参数的宏定义中。</li>
+<li>##只能用在宏定义的替换部分，不能用在宏名或参数列表中。</li>
+<li>##两边必须各有一个宏参数，不能有空格或其他符号。</li>
+<li>##不会对宏参数进行计算或展开，只是简单地连接成一个标识符。</li>
+</ul>
+<h3 id="2-4带副作用的宏参数"><a href="#2-4带副作用的宏参数" class="headerlink" title="2.4带副作用的宏参数"></a>2.4带副作用的宏参数</h3><p>C语言中，带副作用的宏参数是指在宏定义中使用了一些会改变变量值或状态的表达式，例如自增、自减、赋值等。这些表达式在宏替换时可能会被重复计算或产生意外的结果，导致程序出错或难以调试。</p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(x,y) ((x)&gt;(y)?(x):(y))</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> max = MAX(a++,b++); <span class="comment">//相当于max = ((a++)&gt;(b++)?(a++):(b++))</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, max); <span class="comment">//输出3</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a); <span class="comment">//输出2</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, b); <span class="comment">//输出4</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，由于宏参数a++和b++都有副作用，即改变了a和b的值，所以在宏替换时，它们被重复计算了两次，导致max的值不是预期的4，而是3，同时a和b的值也不是预期的2和3，而是2和4。</p>
+<p>为了避免带副作用的宏参数造成的问题，有以下几种方法：</p>
+<ul>
+<li>不要在宏定义中使用带副作用的表达式，尽量使用纯函数或常量。</li>
+<li>在宏定义中给每个参数加上括号，以防止运算优先级的问题。</li>
+<li>在宏定义中给整个表达式加上括号，以防止运算顺序的问题。</li>
+<li>使用内联函数代替宏定义，以实现类型检查和调试功能。</li>
+</ul>
+<h3 id="2-5宏和函数的优劣对比"><a href="#2-5宏和函数的优劣对比" class="headerlink" title="2.5宏和函数的优劣对比"></a>2.5宏和函数的优劣对比</h3><p>C语言中，宏和函数都是一种实现代码复用的方法，但它们有一些区别和优劣：</p>
+<ul>
+<li>宏是在预处理阶段进行文本替换，而函数是在编译阶段生成目标代码。</li>
+<li>宏不会对参数进行类型检查或计算，而函数会对参数进行类型检查和传递。</li>
+<li>宏可以实现一些函数不能做到的功能，比如传递关键字或类型名，而函数可以实现一些宏不能做到的功能，比如递归调用或调试。</li>
+<li>宏的优点是执行速度快，不占用内存空间，不受数据类型的限制，而函数的优点是代码长度短，易于维护和修改，有良好的封装性和可读性。</li>
+</ul>
+<p>总的来说，宏和函数各有适用的场合，一般来说：</p>
+<ul>
+<li>对于简单的运算或表达式，可以使用宏来提高效率和灵活性。</li>
+<li>对于复杂的逻辑或语句，可以使用函数来减少错误和增加可读性。</li>
+<li>对于需要传递关键字或类型名的情况，可以使用宏来实现特殊的功能。</li>
+<li>对于需要进行类型检查或调试的情况，可以使用函数来保证安全和正确。</li>
+</ul>
+<h2 id="3-undef"><a href="#3-undef" class="headerlink" title="3.#undef"></a>3.<code>#undef</code></h2><p>C语言中，<code>#undef</code>是一个预处理指令，它的作用是取消之前用#define定义的宏标识符。它的语法格式是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">undef</span> 标识符</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14159 <span class="comment">//定义圆周率</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">undef</span> PI <span class="comment">//取消圆周率的定义</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>#undef</code>的常见用途有以下几种：</p>
+<ul>
+<li>防止宏定义冲突。在一个程序块中用完宏定义后，为防止后面标识符冲突需要取消其宏定义。</li>
+<li>增强代码可读性。在同一个头文件中定义结构类型相似的对象，根据宏定义不同获取不同的对象，主要用于增强代码的可读性。</li>
+<li>自定义接口。将某个库函数包装成自定义接口，而只允许用户调用自定义接口，禁止直接调用库函数。</li>
+<li>用于调试头文件。在头文件中使用<code>#undef</code>来取消一些宏定义，以便于调试或测试。</li>
+</ul>
+<h2 id="4-命令行定义"><a href="#4-命令行定义" class="headerlink" title="4.命令行定义"></a>4.命令行定义</h2><p>C语言中，命令行定义是一种在编译时传递宏定义的方法，它可以让你在命令行中指定一些符号和值，用于控制编译过程或程序的行为。命令行定义的优点是可以根据不同的需求编译不同的版本，而不需要修改源代码。</p>
+<p>命令行定义的语法格式是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-D标识符=值</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-DMAX_NUM=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就相当于在源代码中定义了一个宏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_NUM 10</span></span><br></pre></td></tr></table></figure>
+
+<p>命令行定义的常见用途有以下几种：</p>
+<ul>
+<li>定义不同长度的数组或缓冲区。例如，可以根据不同的平台或环境指定不同的数组大小。</li>
+<li>定义调试或测试模式。例如，可以根据不同的需求开启或关闭一些调试信息或测试功能。</li>
+<li>定义条件编译。例如，可以根据不同的编译器或操作系统选择不同的代码分支。</li>
+</ul>
+<p>命令行定义也有一些注意事项：</p>
+<ul>
+<li>命令行定义只能定义简单的宏，不能定义带参数的宏或复杂的表达式。</li>
+<li>命令行定义会覆盖源代码中相同的宏定义，除非使用<code>#undef</code>取消宏定义。</li>
+<li>命令行定义会影响所有包含的头文件，除非使用<code>#ifdef</code>或<code>#ifndef</code>限制宏定义的作用域。</li>
+</ul>
+<p>例如有一个C语言程序，它的源代码是这样的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_NUM 10 <span class="comment">//定义一个宏</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX_NUM]; <span class="comment">//定义一个数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_NUM; i++) &#123;</span><br><span class="line">        arr[i] = i + <span class="number">1</span>; <span class="comment">//给数组赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_NUM; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]); <span class="comment">//打印数组</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个程序会打印出1到10这10个数字。但是如果你想改变数组的大小，或者打印不同的数字，你就需要修改源代码中的宏定义。这样很麻烦，而且容易出错。你可以使用命令行定义来解决这个问题。例如，你可以在编译时使用-D选项来指定不同的宏值，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gcc -DMAX_NUM=<span class="number">5</span> test.c -o test <span class="comment">//编译时定义MAX_NUM为5</span></span><br><span class="line">./test <span class="comment">//运行程序</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="comment">//输出结果</span></span><br><span class="line"></span><br><span class="line">gcc -DMAX_NUM=<span class="number">20</span> test.c -o test <span class="comment">//编译时定义MAX_NUM为20</span></span><br><span class="line">./test <span class="comment">//运行程序</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">17</span> <span class="number">18</span> <span class="number">19</span> <span class="number">20</span> <span class="comment">//输出结果</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就可以根据不同的需求编译不同的版本，而不需要修改源代码。你还可以使用命令行定义来控制程序的行为，例如，你可以添加一个DEBUG宏来开启或关闭调试信息，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_NUM 10</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG <span class="comment">//如果定义了DEBUG宏</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PRINT_DEBUG(msg) printf(<span class="string">&quot;DEBUG: %s\n&quot;</span>, msg) <span class="comment">//定义一个打印调试信息的宏</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span> <span class="comment">//否则</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PRINT_DEBUG(msg) <span class="comment">//定义一个空的宏</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[MAX_NUM];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_NUM; i++) &#123;</span><br><span class="line">        arr[i] = i + <span class="number">1</span>;</span><br><span class="line">        PRINT_DEBUG(<span class="string">&quot;Assigning value to array&quot;</span>); <span class="comment">//调用打印调试信息的宏</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_NUM; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">        PRINT_DEBUG(<span class="string">&quot;Printing value from array&quot;</span>); <span class="comment">//调用打印调试信息的宏</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个程序会根据是否定义了DEBUG宏来决定是否打印调试信息。你可以在编译时使用-D选项来指定是否定义DEBUG宏，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">gcc -DDEBUG test.c -o test <span class="comment">//编译时定义DEBUG宏</span></span><br><span class="line">./test <span class="comment">//运行程序</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line">DEBUG: Assigning value to <span class="built_in">array</span></span><br><span class="line"><span class="number">1</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">2</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">3</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">4</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">5</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">6</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">7</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">8</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">9</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"><span class="number">10</span> DEBUG: Printing value from <span class="built_in">array</span></span><br><span class="line"></span><br><span class="line">gcc test.c -o test <span class="comment">//编译时不定义DEBUG宏</span></span><br><span class="line">./test <span class="comment">//运行程序</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span> <span class="comment">//输出结果，没有调试信息</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就可以根据不同的需求开启或关闭调试信息，而不需要修改源代码。希望这个例子能帮助你理解命令行定义的用法。</p>
+<h2 id="5-条件编译"><a href="#5-条件编译" class="headerlink" title="5.条件编译"></a>5.条件编译</h2><p>C语言中，条件编译是一种预处理功能，它可以根据一些条件来决定是否编译某些代码段。条件编译的作用有：</p>
+<ul>
+<li>防止头文件被重复包含，避免重复定义或声明的错误。</li>
+<li>适应不同的平台或环境，实现跨平台的移植性。</li>
+<li>开启或关闭一些调试或测试的功能，方便程序的开发和维护。</li>
+</ul>
+<p>C语言中常见的条件编译指令有：</p>
+<ul>
+<li><code>#if</code>：如果条件表达式为真，则编译后面的代码，直到遇到<code>#else</code>、<code>#elif</code>或<code>#endif</code>为止。</li>
+<li><code>#else</code>：如果前面的条件为假，则编译后面的代码，直到遇到<code>#endif</code>为止。</li>
+<li><code>#elif</code>：如果前面的条件为假，而当前的条件为真，则编译后面的代码，直到遇到<code>#else</code>、<code>#elif</code>或<code>#endif</code>为止。</li>
+<li><code>#endif</code>：结束条件编译指令，必须与<code>#if</code>、<code>#ifdef</code>或<code>#ifndef</code>配对使用。</li>
+<li><code>#ifdef</code>：如果指定的宏已经定义，则编译后面的代码，直到遇到<code>#else</code>、<code>#elif</code>或<code>#endif</code>为止。</li>
+<li><code>#ifndef</code>：如果指定的宏没有定义，则编译后面的代码，直到遇到<code>#else</code>、<code>#elif</code>或<code>#endif</code>为止。</li>
+</ul>
+<p>给出一个例子，假设有一个程序需要在不同的操作系统上运行，而不同的操作系统有不同的头文件和函数。可以使用条件编译来根据不同的宏来选择不同的代码段，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">//根据不同的操作系统定义不同的宏</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(_WIN32) || defined(_WIN64)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_WINDOWS</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(__linux__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_LINUX</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(__APPLE__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_MACOS</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">error</span> Unsupported operating system</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据不同的宏包含不同的头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_WINDOWS</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_LINUX</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_MACOS</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据不同的宏调用不同的函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">sleep_seconds</span><span class="params">(<span class="type">int</span> seconds)</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_WINDOWS</span></span><br><span class="line">    Sleep(seconds * <span class="number">1000</span>); <span class="comment">//windows下用Sleep函数，单位是毫秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_LINUX</span></span><br><span class="line">    sleep(seconds); <span class="comment">//linux下用sleep函数，单位是秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_MACOS</span></span><br><span class="line">    sleep(seconds); <span class="comment">//macos下用sleep函数，单位是秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, world!\n&quot;</span>);</span><br><span class="line">    sleep_seconds(<span class="number">3</span>); <span class="comment">//调用自定义的函数，让程序暂停3秒</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Bye, world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以让程序在不同的操作系统上正常运行，而不需要修改源代码。</p>
+<h2 id="6-文件的包含"><a href="#6-文件的包含" class="headerlink" title="6.文件的包含"></a>6.文件的包含</h2><h3 id="6-1文件的包含"><a href="#6-1文件的包含" class="headerlink" title="6.1文件的包含"></a>6.1文件的包含</h3><p>C语言中，文件包含是一种预处理功能，它可以使用<code>#include</code>指令来引入其他文件的内容，从而把多个文件连接成一个源文件。文件包含的作用有：</p>
+<ul>
+<li>引入标准头文件或自定义头文件，使用其中的声明、定义或宏等。</li>
+<li>分割大型程序为多个模块，方便管理和协作。</li>
+<li>实现代码的复用和封装，提高效率和可维护性。</li>
+</ul>
+<p>C语言中文件包含的用法有：</p>
+<ul>
+<li>使用<code>#include &quot;文件名&quot;</code>来引入当前目录或项目目录下的文件，如果没有找到，则到系统目录下查找。</li>
+<li>使用<code>#include &lt;文件名&gt;</code>来引入系统目录下的文件，一般用于引入标准头文件。</li>
+<li>一个<code>#include</code>指令只能引入一个文件，如果要引入多个文件，需要多个<code>#include</code>指令。</li>
+<li>文件包含可以嵌套，即在一个被引入的文件中又可以引入其他文件。</li>
+</ul>
+<p>给出一个例子，假设有一个程序需要使用标准输入输出函数和自定义的求和函数，可以使用文件包含来引入相应的头文件和源文件，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span> <span class="comment">//引入标准头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;sum.h&quot;</span> <span class="comment">//引入自定义头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;sum.c&quot;</span> <span class="comment">//引入自定义源文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">    <span class="type">int</span> c = sum(a, b); <span class="comment">//调用自定义函数</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The sum of %d and %d is %d\n&quot;</span>, a, b, c); <span class="comment">//调用标准函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//sum.h</span></span><br><span class="line"><span class="comment">//声明自定义函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//sum.c</span></span><br><span class="line"><span class="comment">//定义自定义函数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2文件的嵌套包含"><a href="#6-2文件的嵌套包含" class="headerlink" title="6.2文件的嵌套包含"></a>6.2文件的嵌套包含</h3><p>C语言中，文件嵌套包含是指在一个被引入的文件中又可以引入其他文件，形成嵌套的结构。文件嵌套包含的作用有：</p>
+<ul>
+<li>实现更复杂的逻辑判断，根据多个条件来选择不同的代码段。</li>
+<li>实现更细致的控制，根据不同的层次来决定编译或跳过某些代码段。</li>
+</ul>
+<p>文件嵌套包含的注意事项有：</p>
+<ul>
+<li>每个<code>#if</code>、<code>#ifdef</code>或<code>#ifndef</code>指令必须与一个<code>#endif</code>指令配对，不能缺少或多余。</li>
+<li>每个<code>#else</code>或<code>#elif</code>指令必须与一个前面的<code>#if</code>、<code>#ifdef</code>或<code>#ifndef</code>指令配对，不能缺少或多余。</li>
+<li>嵌套层数不能超过编译器所允许的最大值，一般为8层或16层。</li>
+<li>避免出现递归包含，即在一个文件中引入另一个文件，而另一个文件又引入了第一个文件，这样会造成重复定义或声明的错误。</li>
+<li>使用预处理宏来防止头文件被重复包含，即在头文件开头使用<code>#ifndef _FILE_H_ #define _FILE_H_ ... #endif</code>这样的结构，其中_FILE_H_是头文件的标识符。</li>
+</ul>
+<p>给出一个例子，假设有一个程序需要根据不同的操作系统和编译器来选择不同的代码段，可以使用文件嵌套包含来引入相应的头文件，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;os.h&quot;</span> <span class="comment">//引入操作系统相关的头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;compiler.h&quot;</span> <span class="comment">//引入编译器相关的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, world!\n&quot;</span>);</span><br><span class="line">    print_os(); <span class="comment">//调用操作系统相关的函数</span></span><br><span class="line">    print_compiler(); <span class="comment">//调用编译器相关的函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//os.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _OS_H_  <span class="comment">//可以防止重复嵌套包含</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _OS_H_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据不同的操作系统定义不同的宏</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(_WIN32) || defined(_WIN64)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_WINDOWS</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(__linux__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_LINUX</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(__APPLE__)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OS_MACOS</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">error</span> Unsupported operating system</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明操作系统相关的函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_os</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//os.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;os.h&quot;</span> <span class="comment">//引入操作系统相关的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义操作系统相关的函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_os</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_WINDOWS</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Running on Windows\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_LINUX</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Running on Linux\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> OS_MACOS</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Running on MacOS\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//compiler.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _COMPILER_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _COMPILER_H_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据不同的编译器定义不同的宏</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __GNUC__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COMPILER_GCC</span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(_MSC_VER)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COMPILER_MSVC</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">error</span> Unsupported compiler</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明编译器相关的函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_compiler</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//compiler.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;compiler.h&quot;</span> <span class="comment">//引入编译器相关的头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义编译器相关的函数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_compiler</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> COMPILER_GCC</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Compiled by GCC\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> COMPILER_MSVC</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Compiled by MSVC\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在vs中可以加入以下代码，防止重复嵌套包含:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-pragma"><a href="#7-pragma" class="headerlink" title="7.#pragma"></a>7.<code>#pragma</code></h2><p>C语言中，<code>#pragma</code>是一种预处理指令，它用于向编译器提供一些特定的信息或要求。<code>#pragma</code>指令的语法是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> token</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>token</code>是一个编译器特定的关键字，不同的编译器可能支持不同的<code>token</code>，也可能对同一个<code>token</code>有不同的解释。预处理器会忽略它不认识的<code>#pragma</code>指令，所以<code>#pragma</code>指令通常是不可移植的，只适用于特定的编译器或平台。</p>
+<p>一些常见的<code>#pragma</code>指令有：</p>
+<ul>
+<li><code>#pragma once</code>：用于防止头文件被重复包含，相当于使用预处理宏来实现的头文件保护。</li>
+<li><code>#pragma pack(n)</code>：用于指定结构体或联合体的内存对齐方式，其中<code>n</code>是一个整数，表示按照多少字节对齐。内存对齐会影响结构体或联合体的大小和成员的偏移地址。</li>
+<li><code>#pragma message(str)</code>：用于在编译时输出自定义的信息，其中<code>str</code>是一个字符串，表示要输出的信息。这个指令可以用来提示、警告或调试。</li>
+<li><code>#pragma warning(push/pop)</code>：用于保存或恢复编译器的警告设置，可以在不同的代码段中使用不同的警告级别。</li>
+<li><code>#pragma startup/exit(func)</code>：用于指定一个函数在程序启动前或退出后自动执行，其中<code>func</code>是一个函数名，表示要执行的函数。</li>
+</ul>
+<p>给出一个例子，假设有一个程序需要使用自定义的头文件和结构体，并且在编译时输出一些信息，可以使用以下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;myheader.h&quot;</span> <span class="comment">//引入自定义头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> message(<span class="string">&quot;Compiling main.c...&quot;</span>) <span class="comment">//输出编译信息</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">mystruct</span> <span class="title">s</span>;</span> <span class="comment">//定义自定义结构体变量</span></span><br><span class="line">    s.a = <span class="number">10</span>;</span><br><span class="line">    s.b = <span class="number">20</span>;</span><br><span class="line">    s.c = <span class="number">30</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of mystruct is %d\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> mystruct)); <span class="comment">//输出结构体大小</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The value of s.a is %d\n&quot;</span>, s.a); <span class="comment">//输出结构体成员值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//myheader.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once <span class="comment">//防止重复包含</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack(1) <span class="comment">//指定内存对齐为1字节</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mystruct</span> &#123;</span> <span class="comment">//定义自定义结构体</span></span><br><span class="line">    <span class="type">char</span> a;</span><br><span class="line">    <span class="type">int</span> b;</span><br><span class="line">    <span class="type">short</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack() <span class="comment">//恢复默认内存对齐</span></span></span><br></pre></td></tr></table></figure>
+
+<p>编译和运行上面的代码，得到以下结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gcc main.c -o main</span><br><span class="line">Compiling main.c...</span><br><span class="line">$ ./main</span><br><span class="line">The size of mystruct is 7</span><br><span class="line">The value of s.a is 10</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-offsetof宏"><a href="#8-offsetof宏" class="headerlink" title="8.offsetof宏"></a>8.<code>offsetof</code>宏</h2><p>C语言中，<code>offsetof</code>是一个宏，它用于计算结构体中某个成员相对于结构体首地址的偏移量，以字节为单位，使用<code>offsetof</code>要带头文件<code>#include &lt;stddef.h&gt;</code>。<code>offsetof</code>宏的语法是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">offsetof(type, member)</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>type</code>是一个结构体类型，<code>member</code>是该结构体类型中的一个成员名。<code>offsetof</code>宏的返回值是一个<code>size_t</code>类型的整数，表示该成员的偏移量。</p>
+<p><code>offsetof</code>宏的实现原理是<strong>利用了空指针的特性</strong>，即空指针可以被强制转换为任何类型的指针，但不能被解引用。因此，可以将一个空指针转换为结构体类型的指针，然后通过指针运算来获取成员的地址，再减去空指针的值（通常为0），就得到了成员的偏移量。例如，以下代码展示了一个可能的<code>offsetof</code>宏的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> offsetof(type, member) ((size_t)&amp;(((type *)0)-&gt;member))</span></span><br></pre></td></tr></table></figure>
+
+<p>给出一个例子，假设有一个结构体类型如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">person</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">double</span> height;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>那么可以使用以下代码来计算各个成员的偏移量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stddef.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">person</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">double</span> height;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The offset of name is %zu\n&quot;</span>, offsetof(<span class="keyword">struct</span> person, name)); <span class="comment">//输出0</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The offset of age is %zu\n&quot;</span>, offsetof(<span class="keyword">struct</span> person, age)); <span class="comment">//输出20</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The offset of height is %zu\n&quot;</span>, offsetof(<span class="keyword">struct</span> person, height)); <span class="comment">//输出24</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-cplusplus宏"><a href="#9-cplusplus宏" class="headerlink" title="9.__cplusplus宏"></a>9.__cplusplus宏</h2><p><code>__cplusplus</code> 是一个预定义的宏，在 C++ 编译器中会被定义，并且它的值表示当前编译环境是否支持 C++ 的版本。</p>
+<p>在 C++ 编译器中，<code>__cplusplus</code> 宏的值通常是一个表示 C++ 版本的整数。这个值可以用于编写跨不同 C++ 版本的代码，以便根据不同的编译环境采取不同的行为。</p>
+<p>以下是一些可能的 <code>__cplusplus</code> 值以及它们的含义：</p>
+<ul>
+<li><code>199711L</code>：表示 C++98&#x2F;03 标准。</li>
+<li><code>201103L</code>：表示 C++11 标准。</li>
+<li><code>201402L</code>：表示 C++14 标准。</li>
+<li><code>201703L</code>：表示 C++17 标准。</li>
+<li><code>202002L</code>：表示 C++20 标准。</li>
+<li>等等…</li>
+</ul>
+<p>在编写代码时，可以使用 <code>__cplusplus</code> 宏来根据不同的 C++ 标准版本执行不同的操作，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;C++11 or later is supported.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;C++98/03 is supported.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，根据 <code>__cplusplus</code> 的值，程序会输出不同的消息，以显示当前编译环境是否支持 C++11 或更高版本。</p>
+<p>需要注意的是，虽然 <code>__cplusplus</code> 宏可以用于编写条件化代码，但在实际编程中，更好的做法是使用更具体的特性检测宏，例如在 C++ 中使用 <code>&lt;cstddef&gt;</code> 头文件中的宏来检测特定的标准库功能是否可用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog">cjt</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xyzcjt.github.io/Blog/2023/07/16/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91/">https://xyzcjt.github.io/Blog/2023/07/16/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xyzcjt.github.io/Blog" target="_blank">XYZ's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/Blog/img/headImage.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Blog/2023/07/17/C-C-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="C/C++网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C/C++网络编程</div></div></a></div><div class="next-post pull-right"><a href="/Blog/2023/07/14/C%E8%AF%AD%E8%A8%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="C语言文件操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C语言文件操作</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/Blog/img/headImage.jpg" onerror="this.onerror=null;this.src='/Blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">cjt</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/Blog/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/Blog/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/Blog/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XYZcjt"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到cjt的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91"><span class="toc-number">1.</span> <span class="toc-text">C语言程序编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">1.C语言编译步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-C%E8%AF%AD%E8%A8%80%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">2.C语言预处理详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E9%A2%84%E5%AE%9A%E4%B9%89%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1预定义符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-define"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2#define</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%92%8C"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3#和##</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E5%B8%A6%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E5%AE%8F%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4带副作用的宏参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%E5%AE%8F%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%98%E5%8A%A3%E5%AF%B9%E6%AF%94"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5宏和函数的优劣对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-undef"><span class="toc-number">1.3.</span> <span class="toc-text">3.#undef</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%9A%E4%B9%89"><span class="toc-number">1.4.</span> <span class="toc-text">4.命令行定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">1.5.</span> <span class="toc-text">5.条件编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB"><span class="toc-number">1.6.</span> <span class="toc-text">6.文件的包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1文件的包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2%E6%96%87%E4%BB%B6%E7%9A%84%E5%B5%8C%E5%A5%97%E5%8C%85%E5%90%AB"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2文件的嵌套包含</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-pragma"><span class="toc-number">1.7.</span> <span class="toc-text">7.#pragma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-offsetof%E5%AE%8F"><span class="toc-number">1.8.</span> <span class="toc-text">8.offsetof宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-cplusplus%E5%AE%8F"><span class="toc-number">1.9.</span> <span class="toc-text">9.__cplusplus宏</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/18/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%B8%89/" title="C++11新特性(三)">C++11新特性(三)</a><time datetime="2023-08-18T13:52:13.000Z" title="发表于 2023-08-18 21:52:13">2023-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/16/C-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="C++强制类型转换">C++强制类型转换</a><time datetime="2023-08-16T12:06:31.000Z" title="发表于 2023-08-16 20:06:31">2023-08-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/04/C-11%E6%96%B0%E7%89%B9%E6%80%A7-%E4%BA%8C/" title="C++11新特性(二)">C++11新特性(二)</a><time datetime="2023-08-04T05:46:49.000Z" title="发表于 2023-08-04 13:46:49">2023-08-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-11%E6%96%B0%E7%89%B9%E6%80%A7(%E4%B8%80)/" title="C++11新特性(一)">C++11新特性(一)</a><time datetime="2023-08-02T06:37:35.000Z" title="发表于 2023-08-02 14:37:35">2023-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/Blog/2023/08/02/C-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" title="C++常用算法">C++常用算法</a><time datetime="2023-08-02T05:35:23.000Z" title="发表于 2023-08-02 13:35:23">2023-08-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cjt</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/Blog/js/utils.js"></script><script src="/Blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
